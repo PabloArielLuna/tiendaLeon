@@ -9,17 +9,17 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
   const usuario = "Pablo Luna"
-  const tipo = "Administrador"
-  const navItems = ["Inicio", "Lista de productos", "Contacto"]
-  const [seccion, setSeccion] = useState("Inicio")
+  const tipo = "Administrator"
+  const navItems = ["Home", "Products List", "Contact"]
+  const [seccion, setSeccion] = useState("Home")
 
   const renderContenido = () => {
     switch (seccion) {
-      case "Inicio":
+      case "Home":
         return <Home />
-      case "Lista de productos":
+      case "Products List":
         return <ProductList />
-      case "Contacto":
+      case "Contact":
         return <Contact />
       default:
         return <Home />

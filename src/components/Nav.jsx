@@ -5,7 +5,7 @@ function Nav({ items, onSeleccion }) {
   return (
     <Navbar bg="light" expand="md">
       <Container>
-        <Navbar.Brand className="fw-bold">Mi Tienda</Navbar.Brand>
+        <Navbar.Brand className="fw-bold">Fancy Store</Navbar.Brand>
 
         <BootstrapNav className="me-auto">
           {items.map((item) => (

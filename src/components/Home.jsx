@@ -3,9 +3,9 @@ import { Container } from "react-bootstrap";
 function Home() {
   return (
     <Container>
-      <h1>Bienvenidos a Tienda León</h1>
+      <h1>Welcome to Tienda León</h1>
       <p className="lead text-center mt-4">
-  ¿Buscás algo diferente? Estás en el lugar indicado. Productos top, precios justos y cero complicaciones. ¡Sumate a la experiencia!
+  Looking for something different? You're in the right place. Top products, fair prices, and zero hassle. Join the experience!
 </p>
     </Container>
   );

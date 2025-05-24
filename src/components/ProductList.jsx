@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Card, Button, Spinner } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import '../ProductList.css';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
@@ -14,62 +16,95 @@ function ProductList() {
         setLoading(false);
       })
       .catch(err => {
-        console.error('Error al cargar los productos:', err);
+        console.error('Error loading products:', err);
         setLoading(false);
       });
   }, []);
+
+  const toggleDescription = (id) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   if (loading) {
     return (
       <Container className="text-center mt-5">
         <Spinner animation="border" />
-        <p className="mt-3">Cargando productos...</p>
+        <p className="mt-3">Loading products...</p>
       </Container>
     );
   }
 
   return (
     <Container>
-      <h2 className="mb-4">Lista de Productos</h2>
+      <h2 className="mb-4">Products List</h2>
       <Row>
-        {products.map(product => (
-          <Col key={product.id} md={4} className="mb-4">
-            <Card className="h-100">
-              <Card.Img
-                variant="top"
-                src={product.image}
-                style={{ height: '200px', objectFit: 'contain' }}
-              />
-              <Card.Body className="d-flex flex-column">
-                <Card.Title>{product.title}</Card.Title>
+        {products.map(product => {
+          const isExpanded = expandedDescriptions[product.id];
+          const description = isExpanded
+            ? product.description
+            : product.description.slice(0, 80) + (product.description.length > 80 ? '...' : '');
 
-                <Card.Text className="text-truncate">
-                  {product.description}
-                </Card.Text>
+          return (
+            <Col key={product.id} md={4} className="mb-4">
+              <Card className="h-100 shadow-sm card-hover rounded-4">
+                <Card.Img
+                  variant="top"
+                  src={product.image}
+                  className="card-img-hover p-3"
+                  style={{ height: '220px', objectFit: 'contain' }}
+                />
+                <Card.Body className="d-flex flex-column">
+                  <Card.Title className="fw-semibold fs-5">{product.title}</Card.Title>
 
-                <Card.Text className="fw-bold text-success mt-2">
-                  ${product.price.toFixed(2)}
-                </Card.Text>
+                  <Card.Text style={{ minHeight: '3rem' }} className="text-muted">
+                    {description}
+                  </Card.Text>
 
-                <Button
-                  variant="primary"
-                  onClick={() =>
-                    Swal.fire({
-                      title: 'Producto agregado',
-                      text: `"${product.title}" se agregó al carrito.`,
-                      icon: 'success',
-                      confirmButtonText: 'OK',
-                    })
-                  }
-                  className="mt-auto"
-                >
-                  Agregar
-                </Button>
-              </Card.Body>
+                  {product.description.length > 80 && (
+                    <Button
+                      variant="link"
+                      className="p-0 text-decoration-none text-primary mb-2"
+                      onClick={() => toggleDescription(product.id)}
+                    >
+                      {isExpanded ? (
+                        <>
+                          See less <i className="fas fa-chevron-up"></i>
+                        </>
+                      ) : (
+                        <>
+                          See more <i className="fas fa-chevron-down"></i>
+                        </>
+                      )}
+                    </Button>
+                  )}
 
-            </Card>
-          </Col>
-        ))}
+                  <Card.Text className="fw-bold text-success mt-auto">
+                    U$S {product.price.toFixed(2)}
+                  </Card.Text>
+
+                  <Button
+                    variant="primary"
+                    className="btn-glow mt-2"
+                    onClick={() =>
+                      Swal.fire({
+                        title: 'Product added',
+                        text: `"${product.title}" added to cart.`,
+                        icon: 'success',
+                        confirmButtonText: 'OK',
+                      })
+                    }
+                  >
+                    Add
+                  </Button>
+                </Card.Body>
+              </Card>
+
+            </Col>
+          );
+        })}
       </Row>
     </Container>
   );

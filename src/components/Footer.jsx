@@ -5,7 +5,7 @@ function Footer() {
     return (
         <footer className="bg-dark text-white text-center py-3 mt-auto">
             <Container>
-                <p className="mb-0"> © 2025 Tienda León. Todos los derechos reservados.</p>            </Container>
+                <p className="mb-0"> © 2025 Tienda León. All rights reserved.</p>            </Container>
         </footer>
     );
 }
