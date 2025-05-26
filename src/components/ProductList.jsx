@@ -49,7 +49,14 @@ function ProductList() {
 
           return (
             <Col key={product.id} md={4} className="mb-4">
-              <Card className="h-100 shadow-sm card-hover rounded-4">
+              <Card
+                className="h-100 shadow-sm card-hover"
+                style={{
+                  backgroundColor: '#f0f4f8',
+                  border: '1px solid #d9e2ec',
+                  borderRadius: '1rem',
+                }}
+              >
                 <Card.Img
                   variant="top"
                   src={product.image}
@@ -86,6 +93,11 @@ function ProductList() {
                   </Card.Text>
 
                   <Button
+                    style={{
+                      backgroundColor: '#4CAF93',
+                      border: 'none',
+                      color: '#fff',
+                    }}
                     variant="primary"
                     className="btn-glow mt-2"
                     onClick={() =>

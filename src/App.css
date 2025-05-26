@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.input-hover {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-hover:hover,
+.input-hover:focus {
+  border-color: #4CAF93 !important;
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 147, 0.25);
+}
