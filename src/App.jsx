@@ -29,7 +29,7 @@ function App() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header tipo={tipo} usuario={usuario} irHome={() => setSeccion("Home")} />
-      <Nav items={navItems} onSeleccion={setSeccion} />
+      <Nav items={navItems} onSeleccion={setSeccion} seccionActiva={seccion} />
       <main className="flex-grow-1 p-3">
         {renderContenido()}
       </main>

@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Navbar, Nav as BootstrapNav, Container } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 
-function Nav({ items, onSeleccion }) {
-  const [activo, setActivo] = useState(items[0]); // Primera sección como activa
+function Nav({ items, onSeleccion, seccionActiva }) {
 
   const handleClick = (item) => {
-    setActivo(item);
     onSeleccion(item);
   };
 
@@ -18,9 +16,14 @@ function Nav({ items, onSeleccion }) {
       className="shadow-sm"
     >
       <Container>
-        <Navbar.Brand className="fw-bold fs-4 text-light">
+        <Navbar.Brand
+          className={`fw-bold fs-4 text-light d-flex align-items-center logo-hover ${seccionActiva === "Home" ? "active" : ""}`}
+          onClick={() => onSeleccion("Home")}
+          style={{ cursor: "pointer" }}
+        >
           <i className="bi bi-controller me-2"></i>Fancy Store
         </Navbar.Brand>
+
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -29,9 +32,7 @@ function Nav({ items, onSeleccion }) {
               <BootstrapNav.Link
                 key={item}
                 onClick={() => handleClick(item)}
-                className={`nav-link-custom ${
-                  activo === item ? "active" : ""
-                }`}
+                className={`nav-link-custom ${seccionActiva === item ? "active" : ""}`}
               >
                 {item}
               </BootstrapNav.Link>
@@ -46,21 +47,22 @@ function Nav({ items, onSeleccion }) {
 
       {/* Estilos*/}
       <style>{`
-        .nav-link-custom {
-          color: #ccc;
-          margin-right: 1rem;
-          transition: all 0.3s ease;
-        }
+  .nav-link-custom {
+    color: #ccc !important;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+  }
 
-        .nav-link-custom:hover {
-          color: #ffffff;
-        }
+  .nav-link-custom:hover {
+    color: #ffffff !important;
+  }
 
-        .nav-link-custom.active {
-          color: #4CAF93;
-          font-weight: bold;
-        }
-      `}</style>
+  .nav-link-custom.active {
+    color: #4CAF93 !important;
+    font-weight: bold;
+  }
+`}</style>
+
     </Navbar>
   );
 }
