@@ -17,14 +17,14 @@ function Nav({ items, onSeleccion, seccionActiva }) {
     >
       <Container>
         <Navbar.Brand
-          className={`fw-bold fs-4 text-light d-flex align-items-center logo-hover ${seccionActiva === "Home" ? "active" : ""}`}
-          onClick={() => onSeleccion("Home")}
-          style={{ cursor: "pointer" }}
+          className="fw-bold fs-4 text-light d-flex align-items-center logo-hover"
+          href="https://www.youtube.com/shorts/cUWpHRrMFOQ"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ cursor: "pointer", textDecoration: "none" }}
         >
           <i className="bi bi-controller me-2"></i>Fancy Store
         </Navbar.Brand>
-
-
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <BootstrapNav className="me-auto">
