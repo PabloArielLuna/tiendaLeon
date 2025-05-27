@@ -32,7 +32,6 @@ function App() {
       <Header tipo={tipo} usuario={usuario} irHome={() => setSeccion("Home")} />
       <Nav items={navItems} onSeleccion={setSeccion} seccionActiva={seccion} />
       <main className="flex-grow-1 p-3">{renderContenido()}</main>
-      <img src="/banner.jpg" alt="Banner principal" className="banner-img" />
       <Footer />
     </div>
   );

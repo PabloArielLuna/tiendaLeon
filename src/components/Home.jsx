@@ -7,6 +7,7 @@ function Home() {
       <p className="lead text-center mt-4">
   Looking for something different? You're in the right place. Top products, fair prices, and zero hassle. Join the experience!
 </p>
+      <img src="/banner.jpg" alt="Banner principal" className="banner-img" />
     </Container>
   );
 }
