@@ -17,9 +17,10 @@ function ProductList() {
   const [quantityError, setQuantityError] = useState(false);
 
   const handleDetailOpen = (product) => {
-    setSelectedProduct(product);
-    setQuantity(1);
-  };
+  setSelectedProduct(product);
+  setQuantity(1);
+  setQuantityError(false); // Resetea el error
+};
 
   const handleDetailClose = () => {
     setSelectedProduct(null);
@@ -192,6 +193,7 @@ function ProductList() {
                     const val = parseInt(e.target.value);
                     if (!isNaN(val)) {
                       setQuantity(val);
+                      setQuantityError(val > selectedProduct.stock || val < 1);
                       if (val > selectedProduct.stock) {
                         setQuantityError(true);
                       } else {
