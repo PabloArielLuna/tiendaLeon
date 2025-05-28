@@ -80,9 +80,12 @@ function ProductList() {
         </Form.Group>
       </Form>
       <p className="text-muted mb-4">
-        <strong>{filteredProducts.length}</strong> product{filteredProducts.length !== 1 ? 's' : ''} are being displayed.
+        {filteredProducts.length === 1 ? (
+          <><strong>1</strong> product is being displayed.</>
+        ) : (
+          <><strong>{filteredProducts.length}</strong> products are being displayed.</>
+        )}
       </p>
-
       <Row>
         {filteredProducts.map(product => {
           const isExpanded = expandedDescriptions[product.id];
