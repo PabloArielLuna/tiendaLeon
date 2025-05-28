@@ -56,18 +56,18 @@ function Nav({ items, onSeleccion, seccionActiva }) {
         </Navbar.Collapse>
         <Modal show={showCart} onHide={handleCartClose} centered>
           <Modal.Header closeButton>
-            <Modal.Title>Mi Carrito</Modal.Title>
+            <Modal.Title>My Cart</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>Tu carrito está vacío.</p>
+            <p>Your cart is empty.</p>
             {/* Aquí irán los productos cuando el carrito sea funcional */}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleCartClose}>
-              Cerrar
+              Close
             </Button>
             <Button variant="success" disabled>
-              Finalizar compra
+              Complete purchase
             </Button>
           </Modal.Footer>
         </Modal>
