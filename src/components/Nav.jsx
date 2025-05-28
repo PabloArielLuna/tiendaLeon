@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Navbar, Nav as BootstrapNav, Container } from "react-bootstrap";
+import { Navbar, Nav as BootstrapNav, Container, Modal, Button, Form } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
-import { Modal, Button, Form } from "react-bootstrap";
-
+import "../Nav.css";
 
 function Nav({ items, onSeleccion, seccionActiva }) {
 
@@ -15,7 +14,6 @@ function Nav({ items, onSeleccion, seccionActiva }) {
   const handleCartOpen = () => setShowCart(true);
   const handleCartClose = () => setShowCart(false);
 
-
   return (
     <Navbar
       expand="md"
@@ -23,7 +21,7 @@ function Nav({ items, onSeleccion, seccionActiva }) {
       variant="dark"
       className="shadow-sm"
     >
-      <Container>
+      <Container fluid>
         <Navbar.Brand
           className="fw-bold fs-4 text-light d-flex align-items-center logo-hover"
           href="https://www.youtube.com/shorts/cUWpHRrMFOQ"
@@ -46,8 +44,7 @@ function Nav({ items, onSeleccion, seccionActiva }) {
               </BootstrapNav.Link>
             ))}
           </BootstrapNav>
-
-          <div className="text-light d-flex align-items-center">
+          <div className="d-flex align-items-center ms-md-3 mt-2 mt-md-0">
             <FaShoppingCart
               size={22}
               className="ms-3"
@@ -55,7 +52,6 @@ function Nav({ items, onSeleccion, seccionActiva }) {
               style={{ cursor: "pointer" }}
               onClick={handleCartOpen}
             />
-
           </div>
         </Navbar.Collapse>
         <Modal show={showCart} onHide={handleCartClose} centered>
@@ -76,25 +72,6 @@ function Nav({ items, onSeleccion, seccionActiva }) {
           </Modal.Footer>
         </Modal>
       </Container>
-
-      {/* Estilos*/}
-      <style>{`
-  .nav-link-custom {
-    color: #ccc !important;
-    margin-right: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .nav-link-custom:hover {
-    color: #ffffff !important;
-  }
-
-  .nav-link-custom.active {
-    color: #4CAF93 !important;
-    font-weight: bold;
-  }
-`}</style>
-
     </Navbar>
   );
 }

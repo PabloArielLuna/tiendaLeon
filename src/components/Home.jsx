@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap";
+import "../Home.css"; // Asegurate de tener este archivo creado
 
 function Home() {
   return (
@@ -7,11 +8,13 @@ function Home() {
       <p className="lead mb-4">
         Looking for something different? You're in the right place. Top products, fair prices, and zero hassle. Join the experience!
       </p>
-      <img
-        src="/banner.png"
-        alt="Banner principal"
-        className="banner-img mx-auto d-block"
-      />
+      <div className="banner-container">
+        <img
+          src="/banner.png"
+          alt="Banner principal"
+          className="banner-img"
+        />
+      </div>
     </Container>
   );
 }
