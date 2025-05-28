@@ -207,6 +207,9 @@ function ProductList() {
                   </p>
                 )}
               </Form.Group>
+              <p className="fw-bold text-primary">
+                Total: U$S {(selectedProduct.price * quantity).toFixed(2)}
+              </p>
               <div className="bg-light p-3 rounded shadow-sm">
                 <p><i className="bi bi-check-circle text-success me-2"></i> Free shipping on orders over U$S 50</p>
                 <p><i className="bi bi-clock-history text-warning me-2"></i> Delivery in 2-3 business days</p>
