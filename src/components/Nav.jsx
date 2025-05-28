@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { Navbar, Nav as BootstrapNav, Container } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
+import { Modal, Button, Form } from "react-bootstrap";
+
 
 function Nav({ items, onSeleccion, seccionActiva }) {
 
   const handleClick = (item) => {
     onSeleccion(item);
   };
+
+  const [showCart, setShowCart] = useState(false);
+
+  const handleCartOpen = () => setShowCart(true);
+  const handleCartClose = () => setShowCart(false);
+
 
   return (
     <Navbar
@@ -40,9 +48,33 @@ function Nav({ items, onSeleccion, seccionActiva }) {
           </BootstrapNav>
 
           <div className="text-light d-flex align-items-center">
-            <FaShoppingCart size={22} className="ms-3" title="Carrito" />
+            <FaShoppingCart
+              size={22}
+              className="ms-3"
+              title="Carrito"
+              style={{ cursor: "pointer" }}
+              onClick={handleCartOpen}
+            />
+
           </div>
         </Navbar.Collapse>
+        <Modal show={showCart} onHide={handleCartClose} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Mi Carrito</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Tu carrito está vacío.</p>
+            {/* Aquí irán los productos cuando el carrito sea funcional */}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCartClose}>
+              Cerrar
+            </Button>
+            <Button variant="success" disabled>
+              Finalizar compra
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </Container>
 
       {/* Estilos*/}
