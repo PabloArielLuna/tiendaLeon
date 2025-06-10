@@ -7,13 +7,19 @@ import {
   Button
 } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../Nav.css";
 
 function Nav({ items, cart, removeFromCart }) {
   const [showCart, setShowCart] = useState(false);
-  const handleCartOpen = () => setShowCart(true);
-  const handleCartClose = () => setShowCart(false);
+  const navigate = useNavigate();
+
+  const isLoggedIn = localStorage.getItem("auth") === "true";
+
+  const handleLogout = () => {
+    localStorage.removeItem("auth");
+    navigate("/");
+  };
 
   const total = cart.reduce((acc, p) => acc + p.quantity * p.price, 0).toFixed(2);
 
@@ -40,11 +46,39 @@ function Nav({ items, cart, removeFromCart }) {
                   key={item}
                   to={route === "/home" ? "/" : route}
                   className={({ isActive }) => `nav-link-custom ${isActive ? "active" : ""}`}
+                  style={{ textDecoration: "none" }}
                 >
                   {item}
                 </NavLink>
               );
             })}
+            {isLoggedIn ? (
+              <>
+                <NavLink
+                  to="/admin"
+                  className={({ isActive }) => `nav-link-custom ${isActive ? "active" : ""}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  Admin
+                </NavLink>
+                <Button
+                  variant="outline-light"
+                  size="sm"
+                  className="ms-2"
+                  style={{ textDecoration: "none" }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <NavLink
+                to="/login"
+                className="btn btn-outline-light btn-sm ms-2"
+              >
+                Login
+              </NavLink>
+            )}
           </BootstrapNav>
 
           <div className="d-flex align-items-center ms-md-3 mt-2 mt-md-0">
@@ -53,13 +87,13 @@ function Nav({ items, cart, removeFromCart }) {
               className="ms-3 text-white"
               title="Carrito"
               style={{ cursor: "pointer" }}
-              onClick={handleCartOpen}
+              onClick={() => setShowCart(true)}
             />
           </div>
         </Navbar.Collapse>
 
         {/* Modal del carrito */}
-        <Modal show={showCart} onHide={handleCartClose} centered>
+        <Modal show={showCart} onHide={() => setShowCart(false)} centered>
           <Modal.Header closeButton>
             <Modal.Title>My Cart</Modal.Title>
           </Modal.Header>
@@ -89,12 +123,21 @@ function Nav({ items, cart, removeFromCart }) {
             )}
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCartClose}>
+            <Button variant="secondary" onClick={() => setShowCart(false)}>
               Close
             </Button>
-            <Button variant="success" disabled={cart.length === 0}>
-              Checkout
+            <Button
+              variant="success"
+              disabled={cart.length === 0}
+              onClick={() => {
+                setShowCart(false);
+                window.scrollTo(0, 0);
+                navigate("/Checkout");
+              }}
+            >
+              Go to Checkout
             </Button>
+
           </Modal.Footer>
         </Modal>
       </Container>

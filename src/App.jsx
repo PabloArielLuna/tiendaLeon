@@ -9,6 +9,7 @@ import Contact from "./components/Contact";
 import PrivateRoute from './components/PrivateRoute';
 import AdminPage from './components/AdminPage';
 import Login from './components/Login';
+import Checkout from './components/Checkout';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -86,6 +87,7 @@ function App() {
               />
             } />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/checkout" element={<Checkout cart={cart} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/admin" element={
               <PrivateRoute>

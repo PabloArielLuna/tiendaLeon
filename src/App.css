@@ -59,3 +59,19 @@
     text-align: left !important;
 
 }
+
+.nav-link-custom {
+  color: #ccc;
+  margin-right: 1rem;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+
+.nav-link-custom:hover {
+  color: #fff;
+}
+
+.nav-link-custom.active {
+  color: #4CAF93;
+  font-weight: bold;
+}
