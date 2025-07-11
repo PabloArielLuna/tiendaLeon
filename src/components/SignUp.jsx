@@ -1,28 +1,24 @@
-// src/components/Login.jsx
+// src/components/SignUp.jsx
 import React, { useContext, useState } from 'react';
-import { Form, Button, Container, Alert } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import { Form, Button, Container } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
 
-export default function Login() {
-  const { login } = useContext(AuthContext);
+export default function SignUp() {
+  const { signUp } = useContext(AuthContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', password: '' });
-  const [error, setError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (login(form)) {
-      navigate('/');                   // ⬅️ después del login
-    } else {
-      setError('Invalid credentials');
+    if (signUp(form)) {
+      navigate('/login');              // ⬅️ después del registro
     }
   };
 
   return (
     <Container className="my-5" style={{ maxWidth: 420 }}>
-      <h2 className="mb-4">Login</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
+      <h2 className="mb-4">Create Account</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>Username</Form.Label>
@@ -41,13 +37,10 @@ export default function Login() {
             onChange={(e) => setForm({ ...form, password: e.target.value })}
           />
         </Form.Group>
-        <Button type="submit" variant="primary" className="w-100">
-          Login
+        <Button type="submit" variant="success" className="w-100">
+          Sign Up
         </Button>
       </Form>
-      <p className="mt-3 text-center">
-        No account? <Link to="/signup">Sign up</Link>
-      </p>
     </Container>
   );
 }

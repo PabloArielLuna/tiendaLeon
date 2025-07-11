@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import "../Home.css"; // Asegurate de tener este archivo creado
+import "../Home.css"; //
 
 function Home() {
   return (
