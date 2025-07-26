@@ -158,6 +158,23 @@ button:focus,
   font-size: 1.1rem;
 }
 
+/* Home.css */
+.banner-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.banner-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Si quieres ajustar a móviles, aspect-ratio ya se encarga:
+   Mantiene la proporción 16:9 en cualquier ancho */
+
 /* Asegúrate también de que Footer no empuje el espacio: */
 footer {
   flex-shrink: 0;

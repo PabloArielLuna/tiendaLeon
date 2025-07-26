@@ -14,7 +14,6 @@ function Home() {
           <img
             src="/banner.png"
             alt="Banner principal"
-            className="banner-img"
           />
         </div>
       </Container>
