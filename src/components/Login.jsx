@@ -1,53 +1,59 @@
-// src/components/Login.jsx
-import React, { useContext, useState } from 'react';
-import { Form, Button, Container, Alert } from 'react-bootstrap';
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AuthForm from './AuthForm';
 import { AuthContext } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', password: '' });
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!form.username.trim()) {
+      newErrors.username = 'Username is required';
+    }
+
+    if (!form.password.trim()) {
+      newErrors.password = 'Password is required';
+    } else if (form.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (login(form)) {
-      navigate('/');                   // ⬅️ después del login
-    } else {
-      setError('Invalid credentials');
+
+    // Validaciones de campos
+    if (validateForm()) {
+      // Si los datos son válidos, intentamos loguear
+      if (login(form)) {
+        localStorage.setItem('authToken', `fake-token-${form.username}`);
+        navigate('/');
+      } else {
+        // Mostrar error de credenciales SOLO por Toastify
+        toast.error('Invalid credentials');
+        // Limpiar errores previos de campos
+        setErrors({});
+      }
     }
   };
 
   return (
-    <Container className="my-5" style={{ maxWidth: 420 }}>
-      <h2 className="mb-4">Login</h2>
-      {error && <Alert variant="danger">{error}</Alert>}
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            required
-            value={form.username}
-            onChange={(e) => setForm({ ...form, username: e.target.value })}
-          />
-        </Form.Group>
-        <Form.Group className="mb-4">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            required
-            value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-          />
-        </Form.Group>
-        <Button type="submit" variant="primary" className="w-100">
-          Login
-        </Button>
-      </Form>
-      <p className="mt-3 text-center">
-        No account? <Link to="/signup">Sign up</Link>
-      </p>
-    </Container>
+    <AuthForm
+      type="login"
+      form={form}
+      setForm={setForm}
+      onSubmit={handleSubmit}
+      errors={errors}
+    />
+
   );
 }

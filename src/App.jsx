@@ -13,9 +13,9 @@ import OffersAdmin from './components/OffersAdmin';
 import SignUp from './components/SignUp';
 import AuthProvider from './contexts/AuthProvider';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -70,6 +70,7 @@ function App() {
       <AuthProvider>
         <div className="d-flex flex-column min-vh-100">
           <Header />
+          <ToastContainer position="top-center" autoClose={3000} />
           <Nav
             items={['Home', 'Product List', 'Offers', 'Contact']}
             onSeleccion={setSeccionActiva}

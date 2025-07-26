@@ -31,7 +31,6 @@ export default function AuthProvider({ children }) {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
 
     if (users.find((u) => u.username === username)) {
-      alert('User already exists');
       return false;
     }
 
@@ -51,14 +50,13 @@ export default function AuthProvider({ children }) {
 
     // crea admin por defecto si no existe
     if (!users.find((u) => u.username === 'admin'))
-      users.push({ username: 'admin', password: '1234', role: 'admin' });
+      users.push({ username: 'admin', password: '123456', role: 'admin' });
 
     const match = users.find(
       (u) => u.username === username && u.password === password
     );
 
     if (!match) {
-      alert('Invalid credentials');
       return false;
     }
 

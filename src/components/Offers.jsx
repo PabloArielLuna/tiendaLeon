@@ -1,6 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Spinner, Modal, Form } from 'react-bootstrap';
 import { SuggestedContext } from './SuggestedContext';
+import { CardStyled } from './UI/CardStyled';
+import { ButtonStyled } from './UI/ButtonStyled';
 import Swal from 'sweetalert2';
 
 export default function Offers({ onAddToCart }) {
@@ -69,19 +71,14 @@ export default function Offers({ onAddToCart }) {
 
           return (
             <Col key={product.id} md={4} className="mb-4">
-              <Card className="h-100 shadow-sm card-hover" style={{ backgroundColor: '#f0f4f8', border: '1px solid #d9e2ec', borderRadius: '1rem' }}>
-                <Card.Img
-                  variant="top"
-                  src={product.image}
-                  className="card-img-hover p-3"
-                  style={{ height: '220px', objectFit: 'contain' }}
-                />
+              <CardStyled className="card-hover">
+                <Card.Img variant="top" src={product.image} className="card-img-top" />
                 <Card.Body className="d-flex flex-column">
                   <Card.Title className="fw-semibold fs-5">{product.title}</Card.Title>
                   <Card.Text style={{ minHeight: '3rem' }} className="text-muted">
                     {description}
                   </Card.Text>
-                  {product.description?.length > 80 && (
+                  {product.description.length > 80 && (
                     <Button
                       variant="link"
                       className="p-0 text-decoration-none text-primary mb-2"
@@ -93,15 +90,30 @@ export default function Offers({ onAddToCart }) {
                   <Card.Text className="fw-bold text-success mt-auto">
                     U$S {product.price.toFixed(2)}
                   </Card.Text>
-                  <Button
-                    style={{ backgroundColor: '#4CAF93', border: 'none', color: '#fff' }}
-                    className="btn-glow mt-2"
-                    onClick={() => handleDetailOpen(product)}
-                  >
-                    See details
-                  </Button>
+                  <ButtonStyled
+                  className="mt-2"
+                  $variant="add"
+                  onClick={() => {
+                    onAddToCart(product);
+                    Swal.fire({
+                      title: 'Product added',
+                      text: `"${product.title}" added to cart.`,
+                      icon: 'success',
+                      confirmButtonText: 'OK'
+                    });
+                  }}
+                >
+                  Add
+                </ButtonStyled>
+                <ButtonStyled
+                  className="mt-2"
+                  $variant="details"
+                  onClick={() => handleDetailOpen(product)}
+                >
+                  See details
+                </ButtonStyled>
                 </Card.Body>
-              </Card>
+              </CardStyled>
             </Col>
           );
         })}

@@ -1,0 +1,148 @@
+/* ===== RESET & BASE ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #0d6efd;
+  --secondary: #6c757d;
+  --success: #198754;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #212529;
+  --bg: #ffffff;
+  --text: #212529;
+  --font: 'Segoe UI', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --transition: 0.3s ease;
+}
+
+.green-link {
+  color: #4CAF93;
+}
+
+.green-link:hover {
+  text-decoration: underline;
+  color:#64debb;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 10px rgba(76, 175, 147, 0.6);
+}
+
+a.signup-link {
+  color: #5fdab7 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 6px rgba(76, 175, 147, 0.3);
+}
+
+a.signup-link:hover {
+  color: #4CAF93 !important;
+  text-decoration: underline;
+  text-shadow: 0 0 10px rgba(76, 175, 147, 0.6);
+}
+
+.nav-link-custom {
+    color: #ccc !important;
+    margin-right: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .nav-link-custom:hover {
+    color: #ffffff !important;
+  }
+
+  .nav-link-custom.active {
+    color: #4CAF93 !important;
+    font-weight: bold;
+  }
+
+body {
+  font-family: var(--font);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  font-weight: 400;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color var(--transition);
+}
+a:hover {
+  color: #0b5ed7;
+}
+
+/* ===== HEADINGS ===== */
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* ===== BUTTONS ===== */
+button:focus,
+.btn:focus {
+  outline: 3px auto var(--primary);
+}
+
+/* ===== CONTAINERS ===== */
+.container {
+  width: 100%;
+  max-width: 1140px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-hover {
+  transition: transform 0.3s ease;
+  object-fit: contain;
+  height: 200px;
+}
+.card-hover:hover .card-img-hover {
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  min-height: 2.5rem;
+}
+
+.card-price {
+  font-weight: bold;
+  color: var(--success);
+  font-size: 1.1rem;
+}
+
+/* ===== RESPONSIVE (Mobile First) ===== */
+@media (max-width: 576px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .card-img-hover {
+    height: 160px;
+  }
+
+  .card-title {
+    font-size: 0.95rem;
+  }
+
+  .card-price {
+    font-size: 1rem;
+  }
+}

@@ -1,46 +1,54 @@
-// src/components/SignUp.jsx
 import React, { useContext, useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthContext';
+import AuthForm from './AuthForm';
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
   const { signUp } = useContext(AuthContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({ username: '', password: '' });
+  const [errors, setErrors] = useState({});
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!form.username.trim()) {
+      newErrors.username = 'Username is required';
+    }
+
+    if (!form.password.trim()) {
+      newErrors.password = 'Password is required';
+    } else if (form.password.length < 6) {
+      newErrors.password = 'Password must be at least 6 characters';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (signUp(form)) {
-      navigate('/login');              // ⬅️ después del registro
+
+    if (validateForm()) {
+      const success = signUp(form);
+      if (success) {
+        localStorage.setItem('authToken', `fake-token-${form.username}`);
+        navigate('/login');
+      } else {
+        toast.error('User already exists');
+        setErrors({});
+      }
     }
   };
 
   return (
-    <Container className="my-5" style={{ maxWidth: 420 }}>
-      <h2 className="mb-4">Create Account</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            required
-            value={form.username}
-            onChange={(e) => setForm({ ...form, username: e.target.value })}
-          />
-        </Form.Group>
-        <Form.Group className="mb-4">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            required
-            value={form.password}
-            onChange={(e) => setForm({ ...form, password: e.target.value })}
-          />
-        </Form.Group>
-        <Button type="submit" variant="success" className="w-100">
-          Sign Up
-        </Button>
-      </Form>
-    </Container>
+    <AuthForm
+      type="signup"
+      form={form}
+      setForm={setForm}
+      onSubmit={handleSubmit}
+      errors={errors}
+    />
   );
 }
