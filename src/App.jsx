@@ -11,7 +11,7 @@ import Login from './components/Login';
 import Offers from './components/Offers';
 import OffersAdmin from './components/OffersAdmin';
 import SignUp from './components/SignUp';
-import AuthProvider from './contexts/AuthProvider';
+import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

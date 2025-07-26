@@ -43,12 +43,14 @@ export default function SignUp() {
   };
 
   return (
-    <AuthForm
-      type="signup"
-      form={form}
-      setForm={setForm}
-      onSubmit={handleSubmit}
-      errors={errors}
-    />
+    <main className="auth-container">
+      <AuthForm
+        type="signup"
+        form={form}
+        setForm={setForm}
+        onSubmit={handleSubmit}
+        errors={errors}
+      />
+    </main>
   );
 }

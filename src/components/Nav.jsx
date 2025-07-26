@@ -12,7 +12,7 @@ function Nav({ items, cart, removeFromCart }) {
   const [showCart, setShowCart] = useState(false);
 
   return (
-    <NavbarWrapper $expand="md" $variant="dark">
+    <NavbarWrapper $expand="md" $variant="dark" className="shadow-sm">
   <Container fluid>
     <NavBrand />
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

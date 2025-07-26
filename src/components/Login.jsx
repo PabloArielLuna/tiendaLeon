@@ -47,13 +47,14 @@ export default function Login() {
   };
 
   return (
-    <AuthForm
-      type="login"
-      form={form}
-      setForm={setForm}
-      onSubmit={handleSubmit}
-      errors={errors}
-    />
-
+    <main className="auth-container">
+      <AuthForm
+        type="login"
+        form={form}
+        setForm={setForm}
+        onSubmit={handleSubmit}
+        errors={errors}
+      />
+    </main>
   );
 }

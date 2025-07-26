@@ -67,6 +67,25 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  margin: 0;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Form de login/signup centrado verticalmente */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - /* altura aproximada de navbar+footer */ 120px);
+  padding: 1rem; /* un poco de respiración en mobile */
+}
+
+/* Home ocupa todo */
+.home-container {
+  flex: 1;
 }
 
 a {
@@ -128,6 +147,11 @@ button:focus,
   font-size: 1.1rem;
 }
 
+/* Asegúrate también de que Footer no empuje el espacio: */
+footer {
+  flex-shrink: 0;
+}
+
 /* ===== RESPONSIVE (Mobile First) ===== */
 @media (max-width: 576px) {
   .container {
@@ -144,5 +168,9 @@ button:focus,
 
   .card-price {
     font-size: 1rem;
+  }
+
+  .auth-container {
+    padding: 1rem;
   }
 }
