@@ -1,4 +1,3 @@
-// src/components/NavLinks.jsx
 import React from 'react';
 import { Nav as BootstrapNav } from 'react-bootstrap';
 import { NavItem } from './UI/NavLinkStyled';

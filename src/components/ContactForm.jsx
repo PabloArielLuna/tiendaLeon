@@ -1,4 +1,3 @@
-// src/components/ContactForm.jsx
 import React, { useState } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import { FaUser, FaEnvelope, FaComment, FaPhone, FaClipboardList } from 'react-icons/fa';

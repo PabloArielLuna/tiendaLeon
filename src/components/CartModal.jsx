@@ -1,4 +1,3 @@
-// src/components/CartModal.jsx
 import React from 'react';
 import { Modal } from 'react-bootstrap';
 import { ButtonStyled } from './UI/ButtonStyled';

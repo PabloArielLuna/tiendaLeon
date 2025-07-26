@@ -1,4 +1,3 @@
-// src/components/NavBrand.jsx
 import React from 'react';
 import { Brand } from './UI/NavbarStyled'; // Asegurate que esté bien exportado
 

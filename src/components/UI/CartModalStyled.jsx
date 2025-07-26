@@ -1,4 +1,3 @@
-// src/components/ui/CartModalStyled.jsx
 import styled from 'styled-components';
 
 export const CartItem = styled.div`
