@@ -12,8 +12,8 @@ const HomeWrapper = styled.div`
 `;
 
 const BannerImg = styled.img`
-  max-width: 100%;
-  height: auto;
+  max-width: 100vw;
+  height: 90vw;
   border-radius: 0.5rem;
   margin-top: 2rem;
 `;
