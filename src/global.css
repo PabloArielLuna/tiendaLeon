@@ -18,6 +18,12 @@
   --transition: 0.3s ease;
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .green-link {
   color: #4CAF93;
 }
@@ -68,10 +74,14 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
+  height: 100%;
 }
 
+/* Que el <main> crezca para ocupar todo el espacio entre header y footer */
 main {
   flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Form de login/signup centrado verticalmente */
