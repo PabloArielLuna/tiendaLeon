@@ -47,7 +47,7 @@ export default function Login() {
   };
 
   return (
-    <main className="auth-container">
+    <div className="auth-container">
       <AuthForm
         type="login"
         form={form}
@@ -55,6 +55,6 @@ export default function Login() {
         onSubmit={handleSubmit}
         errors={errors}
       />
-    </main>
+    </div>
   );
 }
