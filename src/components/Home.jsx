@@ -13,7 +13,7 @@ const HomeWrapper = styled.div`
 
 const BannerImg = styled.img`
   max-width: 100vw;
-  height: 90vw;
+  height: 45vw; /* Mitad del tamaño anterior (90vw) */
   border-radius: 0.5rem;
   margin-top: 2rem;
 `;
